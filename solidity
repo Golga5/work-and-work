@@ -1,0 +1,25 @@
+// SPDX-License-Identifier: MIT
+// Generated with Spectral Syntax
+
+pragma solidity >=0.8.0;
+
+contract GitHubRepository {
+    string public name;
+    string public description;
+    address public owner;
+    uint public starCount;
+    mapping(address => bool) public stars;
+    
+    constructor(string memory _name, string memory _description) {
+        name = _name;
+        description = _description;
+        owner = msg.sender;
+        starCount = 0;
+    }
+    
+    function star() public {
+        require(!stars[msg.sender], 'You have already starred this repository');
+        stars[msg.sender] = true;
+        starCount++;
+    }
+}
